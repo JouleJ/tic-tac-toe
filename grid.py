@@ -30,7 +30,8 @@ class Grid:
             j += dj
 
         return count >= required_to_win
-
+    # Дублирование кода для двух разных игроков, стоит объединить 
+    # поведение функции, чтобы не было явного копипаста
     def who_won(self):
         for row in range(self.n):
             for col in range(self.n):
