@@ -1,13 +1,15 @@
-CELL_EMPTY     = ' '
-CELL_PLAYER    = 'X'
-CELL_COMPUTER  = 'O'
+CELL_EMPTY = ' '
+CELL_PLAYER = 'X'
+CELL_COMPUTER = 'O'
 
 PLAYER_WON = -1
 NEITHER_WON = 0
 COMPUTER_WON = 1
 
+
 class Grid:
     def __init__(self, n):
+        # better to rename n, self.n -> size, self.size
         self.n = n
         self.state = [CELL_EMPTY] * (n * n)
 
@@ -20,9 +22,12 @@ class Grid:
     def valid_coords(self, i, j):
         return (i >= 0 and i < self.n) and (j >= 0 and j < self.n)
 
-    def check(self, i, j, di, dj, c):
+    def check(self, i, j, di, dj, c):  # very bad!
+        # better to rename check -> is_game_finished_by
+        # better to rename di, dj, c -> delta_i, delta_j, winner
         required_to_win = min(5, self.n)
         count = 0
+        # better to rename count -> scores
 
         while count < required_to_win and self.valid_coords(i, j) and self.get(i, j) == c:
             count += 1
@@ -54,10 +59,12 @@ class Grid:
         return NEITHER_WON
 
     def draw(self):
+        # better to rename hor_bound -> x_bound
         hor_bound = '+' + ('-' * self.n) + '+'
         result = hor_bound + '\n'
+        # better to rename result -> field
         for i in range(self.n):
-            result += '|' + ''.join(self.state[self.n * i : self.n * (i + 1)]) + '|\n'
+            result += '|' + ''.join(self.state[self.n * i: self.n * (i + 1)]) + '|\n'
         result += hor_bound + '\n'
         return result
 
