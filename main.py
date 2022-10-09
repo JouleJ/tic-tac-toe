@@ -1,13 +1,17 @@
 import grid
 import minmax
 
+
 def computer_step(g):
+    # maybe better rename g -> grid_obj or grd?
+    # better rename n -> size
     n = g.n
     for i in range(n):
         for j in range(n):
             if g.get(i, j) == grid.CELL_EMPTY:
                 g.set(i, j, grid.CELL_COMPUTER)
                 result = minmax.player_wins(g)
+                # better to rename result -> human_wins
                 if not result:
                     return
                 g.set(i, j, grid.CELL_EMPTY)
@@ -17,7 +21,9 @@ def computer_step(g):
                 g.set(i, j, grid.CELL_COMPUTER)
                 return
 
+
 def player_step(g):
+    # maybe better rename g -> grid or grd?
     print(g.draw())
     while True:
         i, j = list(map(int, input("Enter row and column: ").split(' ')))
@@ -28,9 +34,10 @@ def player_step(g):
         else:
             print('Invalid coordinates!')
 
+
 def main():
-    n = int(input("Enter grid size: "))
-    g = grid.Grid(n)
+    n = int(input("Enter grid size: "))  # n -> size
+    g = grid.Grid(n)  # g -> grid_obj
     empty_cells = n * n
     while True:
         computer_step(g)
@@ -49,6 +56,7 @@ def main():
         if empty_cells == 0:
             print('Neither won!')
             return
+
 
 if __name__ == '__main__':
     main()

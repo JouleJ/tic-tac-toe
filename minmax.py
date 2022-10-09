@@ -1,11 +1,15 @@
 import grid
 
 cache = dict()
+# rename cache -> computer_wins
 
-def computer_wins(g):
+
+# rename computer_wins -> does_computer_win
+def computer_wins(g):  # better to rename g -> grid_obj
     g_str = g.to_str()
     if g_str in cache:
         return cache[g_str]
+
     verdict = g.who_won()
     if verdict == grid.COMPUTER_WON:
         cache[g_str] = True
@@ -15,6 +19,7 @@ def computer_wins(g):
         return False
     else:
         n = g.n
+        # better to rename n -> size
         for i in range(n):
             for j in range(n):
                 if g.get(i, j) == grid.CELL_EMPTY:
@@ -27,7 +32,9 @@ def computer_wins(g):
         cache[g_str] = False
         return False
 
-def player_wins(g):
+
+# rename player_wins -> does_player_win
+def player_wins(g):  # better to rename g -> grid_obj
     g_str = g.to_str()
     verdict = g.who_won()
     if g_str in cache:
